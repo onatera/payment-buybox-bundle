@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./Tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="OnateraPaymentBuyboxBundle">
+            <directory suffix="Test.php">./Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <!-- Sandbox Credentials only :) -->
+        <server name="API_USERNAME" value="" />
+        <server name="API_PASSWORD" value="" />
+        <server name="API_SIGNATURE" value="" />
+    </php>
+
+    <php>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+    </php>
+</phpunit>

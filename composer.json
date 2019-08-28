@@ -1,0 +1,32 @@
+{
+    "name": "onatera/payment-buybox-bundle",
+    "type": "symfony-bundle",
+    "description": "Payment Bundle providing access to the Buybox API",
+    "keywords": ["payment", "buybox"],
+    "homepage": "http://www.onatera.com",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Julien Martin",
+            "email": "julien.m@onatera.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "symfony/browser-kit": ">=2.3 <5.0",
+        "symfony/config": ">=2.3 <5.0",
+        "symfony/dependency-injection": ">=2.3 <5.0",
+        "symfony/form": ">=2.3 <5.0",
+        "symfony/http-foundation": ">=2.3 <5.0",
+        "symfony/http-kernel": ">=2.3 <5.0",
+        "jms/payment-core-bundle": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8|~5.4",
+        "symfony/phpunit-bridge": "~2.7"
+    },
+    "autoload": {
+        "psr-0": { "Onatera\\Payment\\BuyboxBundle": "" }
+    },
+    "target-dir": "Onatera/Payment/BuyboxBundle"
+}

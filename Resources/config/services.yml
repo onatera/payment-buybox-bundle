@@ -1,0 +1,37 @@
+parameters:
+    payment.buybox.express_checkout.return_url: ~
+    payment.buybox.express_checkout.cancel_url: ~
+    payment.buybox.express_checkout.notify_url: ~
+    payment.buybox.express_checkout.useraction: ~
+
+    payment.buybox.username: ~
+    payment.buybox.password: ~
+    payment.buybox.signature: ~
+
+services:
+    payment.buybox.authentication_strategy.token:
+        class: Onatera\Payment\BuyboxBundle\Client\Authentication\TokenAuthenticationStrategy
+        arguments: ['%payment.buybox.username%', '%payment.buybox.password%', '%payment.buybox.signature%']
+
+    payment.buybox.authentication_strategy: '@payment.buybox.authentication_strategy.token'
+
+    payment.plugin.buybox_express_checkout: '@Onatera\Payment\BuyboxBundle\Plugin\ExpressCheckoutPlugin'
+
+    Onatera\Payment\BuyboxBundle\Plugin\ExpressCheckoutPlugin:
+        arguments:
+            - '%payment.buybox.express_checkout.return_url%'
+            - '%payment.buybox.express_checkout.cancel_url%'
+            - '@payment.buybox.client'
+            - '%payment.buybox.express_checkout.notify_url%'
+            - '%payment.buybox.express_checkout.useraction%'
+        tags: ['payment.plugin']
+
+    payment.buybox.client:
+        class: Onatera\Payment\BuyboxBundle\Client\Client
+        arguments: ['@payment.buybox.authentication_strategy', '%payment.buybox.debug%']
+
+    payment.form.buybox_express_checkout_type:
+        class: Onatera\Payment\BuyboxBundle\Form\ExpressCheckoutType
+        tags:
+            - { name: 'payment.method_form_type' }
+            - { name: 'form.type', alias: 'buybox_express_checkout' }
